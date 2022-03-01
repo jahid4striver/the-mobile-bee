@@ -20,7 +20,7 @@ const displayResult= phones=> {
        <div class="card-body">
            <h5 class="card-title">${phone.phone_name}</h5>
            <p class="card-text">${phone.brand}</p>
-           <button onclick="phoneDetails('${phone.slug}')" class="btn btn-success">Show Details</button>
+           <button onclick="phoneDetails('${phone.slug}')" class="btn btn-success"><a href="#phone-details" class="text-white text-decoration-none">Show Details</a></button>
        </div>
    </div>`;
    phoneGrid.appendChild(phoneDiv);
