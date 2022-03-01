@@ -1,45 +1,62 @@
+// Global Variables
+
 const searchField= document.getElementById('search-field');
-// console.log(searchField);
+const notFound= document.getElementById('not-found');
+const phoneGrid= document.getElementById('phone-grid');
+
+
+// Dynamic Search Function
 
 const searchResult= ()=>{
     const inputValue=searchField.value;
     fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
     .then(res=> res.json())
     .then(data=> displayResult(data.data))
+    searchField.value='';
 }
+
+// Showing Search Results
+
 const displayResult= phones=> {
-    phones.forEach(phone => {
-        // console.log(phone);
-        const phoneGrid= document.getElementById('phone-grid');
-       const  phoneDiv= document.createElement('div');
-       phoneDiv.classList.add('col-lg-4');
-       phoneDiv.classList.add('col-md-6');
-       phoneDiv.classList.add('col-12');
-       phoneDiv.innerHTML=`<div class="card h-100 rounded shadow-lg p-4">
-       <img src="${phone.image}" class="w-75 mx-auto card-img-top" alt="...">
-       <div class="card-body">
-           <h5 class="card-title">${phone.phone_name}</h5>
-           <p class="card-text">${phone.brand}</p>
-           <button onclick="phoneDetails('${phone.slug}')" class="btn btn-success"><a href="#phone-details" class="text-white text-decoration-none">Show Details</a></button>
-       </div>
-   </div>`;
-   phoneGrid.appendChild(phoneDiv);
-    });
+    phoneGrid.innerText='';
+    if(phones==''){
+        notFound.classList.replace('d-none', 'd-block');
+        phoneGrid.innerText='';
+    }else{
+        phones.forEach(phone => {
+           const  phoneDiv= document.createElement('div');
+           phoneDiv.classList.add('col-lg-4');
+           phoneDiv.classList.add('col-md-6');
+           phoneDiv.classList.add('col-12');
+           phoneDiv.innerHTML=`<div class="card h-100 rounded shadow-lg p-4">
+            <img src="${phone.image}" class="w-75 mx-auto card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">${phone.phone_name}</h5>
+            <p class="card-text">${phone.brand}</p>
+            <button onclick="phoneDetails('${phone.slug}')" class="btn btn-success"><a href="#phone-details" class="text-white text-decoration-none">Show Details</a></button>
+           </div>
+       </div>`;
+       phoneGrid.appendChild(phoneDiv);
+        });
+    }
+
 };
 
 
-const phoneDetails= (phoneSlug)=>{
+// Loading Phone Details
 
+const detailsDiv= document.getElementById('phone-details');
+
+const phoneDetails= (phoneSlug)=>{
     const url=(`https://openapi.programming-hero.com/api/phone/${phoneSlug}`);
     fetch(url)
     .then(res=> res.json())
     .then(data=> showDetails(data.data));
 }
+// Showing Phone Details
 
 const showDetails= (phone)=>{
-    console.log(phone);
-const detailsDiv= document.getElementById('phone-details');
-
+    detailsDiv.innerText='';
     const  div= document.createElement('div');
     div.classList.add('col-12');
     div.classList.add('col-lg-6');
