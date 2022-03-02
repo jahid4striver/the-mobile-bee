@@ -5,15 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobile Bee</title>
+    <!-- Css Files Link -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
-    <header class="container">
+<body class="container">
+    <!-- Header Start Here -->
+    <header>
         <nav class="w-100 mx-auto">
-                <h1 class="display-5 text-center text-warning fw-bolder" ><img class="" width="150px" src="images/bee.jpeg" alt="">The Mobile Bee</h1>
-    
+            <h1 class="display-6 text-center text-warning fw-bolder"><img class="" width="150px" src="images/bee.jpeg"
+                    alt="">The Mobile Bee</h1>
         </nav>
         <h1 class="text-center text-success mt-5">Find Your Favorite Phone</h1>
         <div class="input-group mb-3 w-75 mx-auto">
@@ -23,24 +24,26 @@
                 id="search-btn">Search</button>
         </div>
     </header>
-    <main class="container">
+    <!-- Header End Here -->
+
+    <main>
+        <!-- Phone Details Section -->
         <section class="my-5">
             <h1 id="not-found" class="text-center text-danger d-none">Sorry Your Searched Mobile Not Found</h1>
             <div id="phone-details" class="row mx-auto">
-
             </div>
         </section>
+        <!-- Phone Display Section -->
         <section class="my-5">
             <div id="phone-grid" class="row g-5">
-                
             </div>
         </section>
+
     </main>
 
 
-
+<!-- Script Files Link -->
     <script src="js/app.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
